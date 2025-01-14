@@ -63,5 +63,5 @@ then
     mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$Log_File_Name
     VALIDATE $? " creating database"
 else
-    echo " $Y Database already exists $N"
+    echo -e " $Y Database already exists $N"
 fi
