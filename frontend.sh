@@ -60,17 +60,20 @@ systemctl start nginx &>>$Log_File_Name
 VALIDATE $? " starting nginx"
 
 rm -rf /usr/share/nginx/html/* &>>$Log_File_Name
+VALIDATE $? " removing files from /usr/share/nginx/html"
 
 curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$Log_File_Name
+VALIDATE $? " downloading frontend.zip"
+
 
 cd /usr/share/nginx/html
-
+VALIDATE $? " changing directory to /usr/share/nginx/html"
 
 unzip /tmp/frontend.zip &>>$Log_File_Name
-
+VALIDATE $? " unzipping frontend.zip"
 
 #vim /etc/nginx/default.d/expense.conf
-mv /home/ec2-user/Expense_project/frontend.conf /etc/nginx/default.d/expense.conf
+#cp /home/ec2-user/Expense_project/frontend.conf /etc/nginx/default.d/expense.conf
 
 
 systemctl restart nginx &>>$Log_File_Name
