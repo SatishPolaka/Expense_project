@@ -38,13 +38,17 @@ if [ $1 -ne 0 ]
 
 }
 
+Check_root(){
+    if [ $USERID -ne 0 ]
+    then
+        echo -e " $R  You must be the root user to excute the script $N "
+        exit 1
+    fi
+}
+
 echo  -e " script started at $TimeStamp" &>>$Log_File_Name
 
-if [ $USERID -ne 0 ]
-then
-    echo -e " $R  You must be the root user to excute the script $N "
-    exit 1
-fi
+Check_root
 
 dnf install mysql-server -y &>>$Log_File_Name
 VALIDATE $? " installing mysql-server"
