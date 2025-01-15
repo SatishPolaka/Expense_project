@@ -74,7 +74,7 @@ VALIDATE $? " unzipping frontend.zip"
 
 #vim /etc/nginx/default.d/expense.conf
 cp /home/ec2-user/Expense_project/expense.conf /etc/nginx/default.d/expense.conf
-
+VALIDATE $? " copying expense.conf"
 
 systemctl restart nginx &>>$Log_File_Name
 VALIDATE $? " restarting nginx"
