@@ -81,9 +81,18 @@ else
     echo "File exists"
 fi
 
+# checking the app directory exist or not
 
-mkdir /app &>>$Log_File_Name
-VALIDATE $? " creating directory"
+dirapp="/app"
+if [ ! -d "$dirapp" ]
+then
+    echo "File doesn't exist. Creating now"
+    mkdir $dirapp &>>$Log_File_Name
+    echo "File created"
+else
+    echo "File exists"
+fi
+
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$Log_File_Name
 VALIDATE $? " downloading backend"
