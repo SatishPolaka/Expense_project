@@ -99,6 +99,9 @@ VALIDATE $? " downloading backend"
 
 cd /app
 
+# loading the same unzipping files
+
+rm -rf * &>>$Log_File_Name
 unzip /tmp/backend.zip &>>$Log_File_Name
 VALIDATE $? " unzipping backend"
 
